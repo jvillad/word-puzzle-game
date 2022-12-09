@@ -57,10 +57,11 @@ async function init() {
 
         
         if (currentGuess.length < MAX_ANSWER_LENGTH) {
-            
+            // append all 5 letters
             currentGuess += letter;
         } else {
-            currentGuess  = currentGuess.substring(0, currentGuess.length - 1) + letter; // replace the last etter
+            // replace the last char of the string if the string length is equals to 5
+            currentGuess  = currentGuess.substring(0, currentGuess.length - 1) + letter; 
         }
         
         // determine which row to place letter
@@ -98,8 +99,10 @@ async function init() {
         isLoading = false;
         setLoading(false);
     
+
         if (!validWord) {
-            invalidWord();
+           
+            invalidWord(currentGuess);  //add an 'invalid' class attribute
             return;
         }
         
@@ -117,8 +120,7 @@ async function init() {
             return;
 
         } else if (currentRow === NUMBER_OF_ROUNDS) {
-            // alert(`you lost! the word was ${wordOfTheDay}`) // TODO: remove alert
-
+            
             messageBar.innerText = `You lost! The word was ${wordOfTheDay}`;
 
             done = true;
@@ -157,7 +159,7 @@ function answerCheck(userAnswer, theAnswer) {
 }
 
 
-function invalidWord () {
+function invalidWord (theWord) {
     for (let i = 0; i < MAX_ANSWER_LENGTH; i++) {
         allLetters[currentRow * MAX_ANSWER_LENGTH +i].classList.remove('invalid');
 
@@ -165,6 +167,8 @@ function invalidWord () {
             allLetters[currentRow * MAX_ANSWER_LENGTH +i].classList.add('invalid');
         }, 10)
     }
+    messageBar.innerText = `Nice try, but '${theWord}' is an invalid word!`;
+    
 }
 
 /***
