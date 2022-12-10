@@ -115,13 +115,13 @@ async function init() {
             // if the current guess is the correct word
             // no need to validate
             // alert('correct word!, you win!'); // TODO: remove alert
-            messageBar.innerText = `Correct word! You win the game!`;
+            messageBar.innerText = `Congratulations! You win! 🎉 👏`;
             done = true;
             return;
 
         } else if (currentRow === NUMBER_OF_ROUNDS) {
             
-            messageBar.innerText = `You lost! The word was ${wordOfTheDay}`;
+            messageBar.innerText = `You lost! ☹️ The word was ${wordOfTheDay}`;
 
             done = true;
         }
@@ -161,6 +161,7 @@ function answerCheck(userAnswer, theAnswer) {
 
 function invalidWord (theWord) {
     for (let i = 0; i < MAX_ANSWER_LENGTH; i++) {
+        // remove previous added invalid word
         allLetters[currentRow * MAX_ANSWER_LENGTH +i].classList.remove('invalid');
 
         setTimeout(function() {
