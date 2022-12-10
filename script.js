@@ -33,7 +33,7 @@ async function init() {
             // do nothing;
             return;
         }
-       
+        
         //records user keypress
         const userAction = event.key;
         if (userAction === 'Enter') {
@@ -48,7 +48,6 @@ async function init() {
         } 
 
     });
-
 
     /***
      * Function responsible for placing letter in the square box
